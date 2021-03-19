@@ -1,0 +1,67 @@
+﻿@model SCXC.Models.Transaccion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transaccion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoMovimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoMovimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numDoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numDoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.monto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.monto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoDoc.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDoc.descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.transaccion_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

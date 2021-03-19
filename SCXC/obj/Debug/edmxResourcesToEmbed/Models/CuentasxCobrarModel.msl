@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CuentasxCobrarModelStoreContainer" CdmEntityContainer="CuentasxCobrarEntities">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="CuentasxCobrarModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="limiteCredito" ColumnName="limiteCredito" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoDocs">
+      <EntityTypeMapping TypeName="CuentasxCobrarModel.TipoDoc">
+        <MappingFragment StoreEntitySet="TipoDoc">
+          <ScalarProperty Name="tipoDoc_id" ColumnName="tipoDoc_id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="cuentaContable" ColumnName="cuentaContable" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transaccions">
+      <EntityTypeMapping TypeName="CuentasxCobrarModel.Transaccion">
+        <MappingFragment StoreEntitySet="Transaccion">
+          <ScalarProperty Name="transaccion_id" ColumnName="transaccion_id" />
+          <ScalarProperty Name="tipoMovimiento" ColumnName="tipoMovimiento" />
+          <ScalarProperty Name="tipoDoc_id" ColumnName="tipoDoc_id" />
+          <ScalarProperty Name="numDoc" ColumnName="numDoc" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegisterUsers">
+      <EntityTypeMapping TypeName="CuentasxCobrarModel.RegisterUser">
+        <MappingFragment StoreEntitySet="RegisterUser">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
