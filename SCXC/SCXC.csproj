@@ -137,9 +137,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AsientoContablesController.cs" />
+    <Compile Include="Controllers\AsientosContablesController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TipoDocController.cs" />
@@ -147,7 +146,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AsientoContable.cs">
+    <Compile Include="Models\AsientosContable.cs">
       <DependentUpon>CuentasxCobrarModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs">
@@ -295,11 +294,11 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\AsientoContables\Create.cshtml" />
-    <Content Include="Views\AsientoContables\Delete.cshtml" />
-    <Content Include="Views\AsientoContables\Details.cshtml" />
-    <Content Include="Views\AsientoContables\Edit.cshtml" />
-    <Content Include="Views\AsientoContables\Index.cshtml" />
+    <Content Include="Views\AsientosContables\Create.cshtml" />
+    <Content Include="Views\AsientosContables\Delete.cshtml" />
+    <Content Include="Views\AsientosContables\Details.cshtml" />
+    <Content Include="Views\AsientosContables\Edit.cshtml" />
+    <Content Include="Views\AsientosContables\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

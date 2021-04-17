@@ -29,6 +29,6 @@ namespace SCXC.Models
         public virtual DbSet<TipoDoc> TipoDocs { get; set; }
         public virtual DbSet<Transaccion> Transaccions { get; set; }
         public virtual DbSet<RegisterUser> RegisterUsers { get; set; }
-        public virtual DbSet<AsientoContable> AsientoContables { get; set; }
+        public virtual DbSet<AsientosContable> AsientosContables { get; set; }
     }
 }

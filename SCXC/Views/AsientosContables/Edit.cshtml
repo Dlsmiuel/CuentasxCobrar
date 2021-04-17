@@ -1,4 +1,4 @@
-﻿@model SCXC.Models.AsientoContable
+﻿@model SCXC.Models.AsientosContable
 
 @{
     ViewBag.Title = "Edit";
@@ -12,16 +12,10 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>AsientoContable</h4>
+        <h4>AsientosContable</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.idAsiento)
 
         <div class="form-group">
             @Html.LabelFor(model => model.AccountSeat, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -71,7 +65,13 @@
             </div>
         </div>
 
-        @Html.HiddenFor(model => model.idClient)
+        <div class="form-group">
+            @Html.LabelFor(model => model.idClient, "idClient", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idClient", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idClient, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.idAuxiliarSystem, htmlAttributes: new { @class = "control-label col-md-2" })

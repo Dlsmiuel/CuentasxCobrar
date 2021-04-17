@@ -1,14 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CuentasxCobrarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'CuentasxCobrar.dbo.AsientoContable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="AsientoContable">
+  <EntityType Name="AsientosContables">
     <Key>
-      <PropertyRef Name="idClient" />
+      <PropertyRef Name="idAsiento" />
     </Key>
-    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="idAsiento" Type="int" Nullable="false" />
     <Property Name="AccountSeat" Type="int" />
-    <Property Name="account" Type="nchar" MaxLength="10" />
+    <Property Name="account" Type="varchar" MaxLength="50" />
     <Property Name="movementType" Type="varchar" MaxLength="50" />
     <Property Name="entryDate" Type="varchar" MaxLength="50" />
     <Property Name="seatAmount" Type="varchar" MaxLength="50" />
@@ -57,14 +55,14 @@ warning 6002: The table/view 'CuentasxCobrar.dbo.AsientoContable' does not have 
     <Property Name="cliente_id" Type="int" />
     <Property Name="monto" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
-  <Association Name="FK_AsientoContable_Cliente">
+  <Association Name="FK_AsientosContables_Cliente">
     <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-    <End Role="AsientoContable" Type="Self.AsientoContable" Multiplicity="0..1" />
+    <End Role="AsientosContables" Type="Self.AsientosContables" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Cliente">
         <PropertyRef Name="cliente_id" />
       </Principal>
-      <Dependent Role="AsientoContable">
+      <Dependent Role="AsientosContables">
         <PropertyRef Name="idClient" />
       </Dependent>
     </ReferentialConstraint>
@@ -94,26 +92,14 @@ warning 6002: The table/view 'CuentasxCobrar.dbo.AsientoContable' does not have 
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="CuentasxCobrarModelStoreContainer">
+    <EntitySet Name="AsientosContables" EntityType="Self.AsientosContables" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RegisterUser" EntityType="Self.RegisterUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoDoc" EntityType="Self.TipoDoc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Transaccion" EntityType="Self.Transaccion" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AsientoContable" EntityType="Self.AsientoContable" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [AsientoContable].[description] AS [description], 
-    [AsientoContable].[AccountSeat] AS [AccountSeat], 
-    [AsientoContable].[account] AS [account], 
-    [AsientoContable].[movementType] AS [movementType], 
-    [AsientoContable].[entryDate] AS [entryDate], 
-    [AsientoContable].[seatAmount] AS [seatAmount], 
-    [AsientoContable].[status] AS [status], 
-    [AsientoContable].[idClient] AS [idClient], 
-    [AsientoContable].[idAuxiliarSystem] AS [idAuxiliarSystem]
-    FROM [dbo].[AsientoContable] AS [AsientoContable]</DefiningQuery>
-    </EntitySet>
-    <AssociationSet Name="FK_AsientoContable_Cliente" Association="Self.FK_AsientoContable_Cliente">
+    <AssociationSet Name="FK_AsientosContables_Cliente" Association="Self.FK_AsientosContables_Cliente">
       <End Role="Cliente" EntitySet="Cliente" />
-      <End Role="AsientoContable" EntitySet="AsientoContable" />
+      <End Role="AsientosContables" EntitySet="AsientosContables" />
     </AssociationSet>
     <AssociationSet Name="FK_Transaccion_Cliente" Association="Self.FK_Transaccion_Cliente">
       <End Role="Cliente" EntitySet="Cliente" />

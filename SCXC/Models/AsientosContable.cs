@@ -12,9 +12,9 @@ namespace SCXC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AsientoContable
+    public partial class AsientosContable
     {
-        public string description { get; set; }
+        public int idAsiento { get; set; }
         public Nullable<int> AccountSeat { get; set; }
         public string account { get; set; }
         public string movementType { get; set; }
@@ -23,6 +23,7 @@ namespace SCXC.Models
         public string status { get; set; }
         public int idClient { get; set; }
         public Nullable<int> idAuxiliarSystem { get; set; }
+        public string description { get; set; }
     
         public virtual Cliente Cliente { get; set; }
     }

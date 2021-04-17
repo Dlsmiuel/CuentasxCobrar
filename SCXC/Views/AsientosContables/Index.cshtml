@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SCXC.Models.AsientoContable>
+﻿@model IEnumerable<SCXC.Models.AsientosContable>
 
 @{
     ViewBag.Title = "Index";
@@ -12,9 +12,6 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.AccountSeat)
         </th>
@@ -45,9 +42,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.AccountSeat)
         </td>
         <td>
@@ -72,10 +66,9 @@
             @Html.DisplayFor(modelItem => item.Cliente.nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idClient }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idClient }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idClient })
-            @Html.ActionLink("Contabilizar", "Contabilizar", new { id=item.idClient })
+            @Html.ActionLink("Edit", "Edit", new { id=item.idAsiento }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idAsiento }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idAsiento })
         </td>
     </tr>
 }

@@ -18,6 +18,7 @@ namespace SCXC.Models
         public Cliente()
         {
             this.Transaccions = new HashSet<Transaccion>();
+            this.AsientosContables = new HashSet<AsientosContable>();
         }
     
         public int cliente_id { get; set; }
@@ -28,6 +29,7 @@ namespace SCXC.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transaccion> Transaccions { get; set; }
-        public virtual AsientoContable AsientoContable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AsientosContable> AsientosContables { get; set; }
     }
 }
