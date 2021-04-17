@@ -14,16 +14,13 @@ namespace SCXC.Models
     
     public partial class AsientosContable
     {
-        public int idAsiento { get; set; }
-        public Nullable<int> AccountSeat { get; set; }
-        public string account { get; set; }
-        public string movementType { get; set; }
-        public string entryDate { get; set; }
-        public string seatAmount { get; set; }
-        public string status { get; set; }
+        public int ID { get; set; }
+        public string Description { get; set; }
+        public int IdAuxiliarSystem { get; set; }
+        public string MovementType { get; set; }
+        public System.DateTime EntryDate { get; set; }
+        public bool Status { get; set; }
         public int idClient { get; set; }
-        public Nullable<int> idAuxiliarSystem { get; set; }
-        public string description { get; set; }
     
         public virtual Cliente Cliente { get; set; }
     }

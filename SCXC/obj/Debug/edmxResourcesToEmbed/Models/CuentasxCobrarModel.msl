@@ -48,16 +48,14 @@
     </EntitySetMapping>
     <EntitySetMapping Name="AsientosContables">
       <EntityTypeMapping TypeName="CuentasxCobrarModel.AsientosContable">
-        <MappingFragment StoreEntitySet="AsientosContables">
-          <ScalarProperty Name="idAuxiliarSystem" ColumnName="idAuxiliarSystem" />
+        <MappingFragment StoreEntitySet="AsientosContable">
           <ScalarProperty Name="idClient" ColumnName="idClient" />
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="seatAmount" ColumnName="seatAmount" />
-          <ScalarProperty Name="entryDate" ColumnName="entryDate" />
-          <ScalarProperty Name="movementType" ColumnName="movementType" />
-          <ScalarProperty Name="account" ColumnName="account" />
-          <ScalarProperty Name="AccountSeat" ColumnName="AccountSeat" />
-          <ScalarProperty Name="idAsiento" ColumnName="idAsiento" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="MovementType" ColumnName="MovementType" />
+          <ScalarProperty Name="IdAuxiliarSystem" ColumnName="IdAuxiliarSystem" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

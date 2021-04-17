@@ -1,18 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CuentasxCobrarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="AsientosContables">
+  <EntityType Name="AsientosContable">
     <Key>
-      <PropertyRef Name="idAsiento" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="idAsiento" Type="int" Nullable="false" />
-    <Property Name="AccountSeat" Type="int" />
-    <Property Name="account" Type="varchar" MaxLength="50" />
-    <Property Name="movementType" Type="varchar" MaxLength="50" />
-    <Property Name="entryDate" Type="varchar" MaxLength="50" />
-    <Property Name="seatAmount" Type="varchar" MaxLength="50" />
-    <Property Name="status" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="IdAuxiliarSystem" Type="int" Nullable="false" />
+    <Property Name="MovementType" Type="nvarchar(max)" />
+    <Property Name="EntryDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
     <Property Name="idClient" Type="int" Nullable="false" />
-    <Property Name="idAuxiliarSystem" Type="int" />
   </EntityType>
   <EntityType Name="Cliente">
     <Key>
@@ -55,14 +53,14 @@
     <Property Name="cliente_id" Type="int" />
     <Property Name="monto" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
-  <Association Name="FK_AsientosContables_Cliente">
+  <Association Name="FK_AsientoContable_Cliente">
     <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-    <End Role="AsientosContables" Type="Self.AsientosContables" Multiplicity="*" />
+    <End Role="AsientosContable" Type="Self.AsientosContable" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Cliente">
         <PropertyRef Name="cliente_id" />
       </Principal>
-      <Dependent Role="AsientosContables">
+      <Dependent Role="AsientosContable">
         <PropertyRef Name="idClient" />
       </Dependent>
     </ReferentialConstraint>
@@ -92,14 +90,14 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="CuentasxCobrarModelStoreContainer">
-    <EntitySet Name="AsientosContables" EntityType="Self.AsientosContables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AsientosContable" EntityType="Self.AsientosContable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RegisterUser" EntityType="Self.RegisterUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoDoc" EntityType="Self.TipoDoc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Transaccion" EntityType="Self.Transaccion" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_AsientosContables_Cliente" Association="Self.FK_AsientosContables_Cliente">
+    <AssociationSet Name="FK_AsientoContable_Cliente" Association="Self.FK_AsientoContable_Cliente">
       <End Role="Cliente" EntitySet="Cliente" />
-      <End Role="AsientosContables" EntitySet="AsientosContables" />
+      <End Role="AsientosContable" EntitySet="AsientosContable" />
     </AssociationSet>
     <AssociationSet Name="FK_Transaccion_Cliente" Association="Self.FK_Transaccion_Cliente">
       <End Role="Cliente" EntitySet="Cliente" />

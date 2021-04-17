@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json;
 using SCXC.Models;
 
 namespace SCXC.Controllers
@@ -53,14 +49,35 @@ namespace SCXC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idAsiento,AccountSeat,account,movementType,entryDate,seatAmount,status,idClient,idAuxiliarSystem")] AsientosContable asientosContable)
+        public ActionResult Create([Bind(Include = "ID,Description,IdAuxiliarSystem,MovementType,EntryDate,Status,idClient")] AsientosContable asientosContable)
         {
             if (ModelState.IsValid)
             {
                 db.AsientosContables.Add(asientosContable);
                 db.SaveChanges();
+                using (var client = new HttpClient())
+                {
+
+                    client.BaseAddress = new Uri("https://d57b22c5989c.ngrok.io/api/");
+                    var request = new AsientosContablesClase()
+                    {
+                        Description = asientosContable.Description,
+                        IdAuxiliarSystem = asientosContable.IdAuxiliarSystem,
+                        MovementType = asientosContable.MovementType,
+                        EntryDate = asientosContable.EntryDate,
+                        Status = asientosContable.Status
+                    };
+                    var response = client.PostAsJsonAsync<AsientosContablesClase>("accountingEntry", request);
+                    response.Wait();
+
+                    var postResult = response.Result;
+                    if (postResult.IsSuccessStatusCode)
+                    {
+                        TempData["alertMessage"] = "Whatever you want to alert the user with";
+                    }
+                }
                 return RedirectToAction("Index");
-            }
+            }           
 
             ViewBag.idClient = new SelectList(db.Clientes, "cliente_id", "nombre", asientosContable.idClient);
             return View(asientosContable);
@@ -87,7 +104,7 @@ namespace SCXC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idAsiento,AccountSeat,account,movementType,entryDate,seatAmount,status,idClient,idAuxiliarSystem")] AsientosContable asientosContable)
+        public ActionResult Edit([Bind(Include = "ID,Description,IdAuxiliarSystem,MovementType,EntryDate,Status,idClient")] AsientosContable asientosContable)
         {
             if (ModelState.IsValid)
             {
@@ -133,64 +150,5 @@ namespace SCXC.Controllers
             }
             base.Dispose(disposing);
         }
-
-        /*public async Task<ActionResult> Contabilizar (int? id)
-        {
-            if(id == null)
-            {
-                return HttpNotFound();
-            }
-
-            var asientoscontables = await db.AsientosContables.FindAsync(id);
-
-            if(asientoscontables == null)
-            {
-                return HttpNotFound();
-            }
-
-            var data = new
-            {
-                description = asientoscontables.description,
-                idAuxiliarSystem = asientoscontables.idAuxiliarSystem,
-                account = asientoscontables.account,
-                movementType = asientoscontables.movementType,
-                entryDate = asientoscontables.entryDate,
-                seatAmount = asientoscontables.seatAmount,
-                status = asientoscontables.status
-            };
-
-            var httpClient = new HttpClient();
-            var stringContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync("https://d57b22c5989c.ngrok.io//api/accountingEntry", stringContent);
-
-            var contents = response.Content.ReadAsStringAsync().IsCompleted;
-            var result = await response.Content.ReadAsStringAsync();
-            dynamic deserialized = JsonConvert.DeserializeObject(result);
-            dynamic newID = (int)deserialized.id;
-
-            if (contents)
-            {
-                asientoscontables.idClient = newID;
-
-                try
-                {
-                    db.Entry(asientoscontables).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SCXC(asientoscontables.idClient))
-                    {
-                        return HttpNotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));   
-            }
-            return View(asientoscontables);
-        }*/
     }
 }

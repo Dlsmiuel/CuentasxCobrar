@@ -11,8 +11,8 @@
         <AssociationConnector Association="CuentasxCobrarModel.FK_Transaccion_Cliente" ManuallyRouted="false" />
         <AssociationConnector Association="CuentasxCobrarModel.FK_Transaccion_TipoDoc" ManuallyRouted="false" />
         <EntityTypeShape EntityType="CuentasxCobrarModel.RegisterUser" Width="1.5" PointX="3.375" PointY="4.75" />
-        <EntityTypeShape EntityType="CuentasxCobrarModel.AsientosContable" Width="1.5" PointX="3" PointY="8" />
-        <AssociationConnector Association="CuentasxCobrarModel.FK_AsientosContables_Cliente" />
+        <EntityTypeShape EntityType="CuentasxCobrarModel.AsientosContable" Width="1.5" PointX="3" PointY="8.125" />
+        <AssociationConnector Association="CuentasxCobrarModel.FK_AsientoContable_Cliente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

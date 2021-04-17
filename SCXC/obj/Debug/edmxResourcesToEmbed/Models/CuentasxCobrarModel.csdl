@@ -10,7 +10,7 @@
     <Property Name="limiteCredito" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Transaccions" Relationship="Self.FK_Transaccion_Cliente" FromRole="Cliente" ToRole="Transaccion" />
-    <NavigationProperty Name="AsientosContables" Relationship="CuentasxCobrarModel.FK_AsientosContables_Cliente" FromRole="Cliente" ToRole="AsientosContable" />
+    <NavigationProperty Name="AsientosContables" Relationship="CuentasxCobrarModel.FK_AsientoContable_Cliente" FromRole="Cliente" ToRole="AsientosContable" />
   </EntityType>
   <EntityType Name="TipoDoc">
     <Key>
@@ -74,7 +74,7 @@
     </AssociationSet>
     <EntitySet Name="RegisterUsers" EntityType="CuentasxCobrarModel.RegisterUser" />
     <EntitySet Name="AsientosContables" EntityType="CuentasxCobrarModel.AsientosContable" />
-    <AssociationSet Name="FK_AsientosContables_Cliente" Association="CuentasxCobrarModel.FK_AsientosContables_Cliente">
+    <AssociationSet Name="FK_AsientoContable_Cliente" Association="CuentasxCobrarModel.FK_AsientoContable_Cliente">
       <End Role="Cliente" EntitySet="Clientes" />
       <End Role="AsientosContable" EntitySet="AsientosContables" />
     </AssociationSet>
@@ -91,20 +91,18 @@
   </EntityType>
   <EntityType Name="AsientosContable">
     <Key>
-      <PropertyRef Name="idAsiento" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="idAsiento" Type="Int32" Nullable="false" />
-    <Property Name="AccountSeat" Type="Int32" />
-    <Property Name="account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="movementType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="entryDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="seatAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdAuxiliarSystem" Type="Int32" Nullable="false" />
+    <Property Name="MovementType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
     <Property Name="idClient" Type="Int32" Nullable="false" />
-    <Property Name="idAuxiliarSystem" Type="Int32" />
-    <NavigationProperty Name="Cliente" Relationship="CuentasxCobrarModel.FK_AsientosContables_Cliente" FromRole="AsientosContable" ToRole="Cliente" />
+    <NavigationProperty Name="Cliente" Relationship="CuentasxCobrarModel.FK_AsientoContable_Cliente" FromRole="AsientosContable" ToRole="Cliente" />
   </EntityType>
-  <Association Name="FK_AsientosContables_Cliente">
+  <Association Name="FK_AsientoContable_Cliente">
     <End Type="CuentasxCobrarModel.Cliente" Role="Cliente" Multiplicity="1" />
     <End Type="CuentasxCobrarModel.AsientosContable" Role="AsientosContable" Multiplicity="*" />
     <ReferentialConstraint>

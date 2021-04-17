@@ -149,6 +149,7 @@
     <Compile Include="Models\AsientosContable.cs">
       <DependentUpon>CuentasxCobrarModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AsientosContablesClase.cs" />
     <Compile Include="Models\Cliente.cs">
       <DependentUpon>CuentasxCobrarModel.tt</DependentUpon>
     </Compile>
