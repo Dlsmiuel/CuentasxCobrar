@@ -10,6 +10,7 @@
     <Property Name="limiteCredito" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Transaccions" Relationship="Self.FK_Transaccion_Cliente" FromRole="Cliente" ToRole="Transaccion" />
+    <NavigationProperty Name="AsientoContable" Relationship="CuentasxCobrarModel.FK_AsientoContable_Cliente" FromRole="Cliente" ToRole="AsientoContable" />
   </EntityType>
   <EntityType Name="TipoDoc">
     <Key>
@@ -72,6 +73,11 @@
       <End Role="Transaccion" EntitySet="Transaccions" />
     </AssociationSet>
     <EntitySet Name="RegisterUsers" EntityType="CuentasxCobrarModel.RegisterUser" />
+    <EntitySet Name="AsientoContables" EntityType="CuentasxCobrarModel.AsientoContable" />
+    <AssociationSet Name="FK_AsientoContable_Cliente" Association="CuentasxCobrarModel.FK_AsientoContable_Cliente">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="AsientoContable" EntitySet="AsientoContables" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="RegisterUser">
     <Key>
@@ -83,4 +89,31 @@
     <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
   </EntityType>
+  <EntityType Name="AsientoContable">
+    <Key>
+      <PropertyRef Name="idClient" />
+    </Key>
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountSeat" Type="Int32" />
+    <Property Name="account" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="movementType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="entryDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="seatAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idClient" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="CuentasxCobrarModel.FK_AsientoContable_Cliente" FromRole="AsientoContable" ToRole="Cliente" />
+    <Property Name="idAuxiliarSystem" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_AsientoContable_Cliente">
+    <End Type="CuentasxCobrarModel.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="CuentasxCobrarModel.AsientoContable" Role="AsientoContable" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="cliente_id" />
+      </Principal>
+      <Dependent Role="AsientoContable">
+        <PropertyRef Name="idClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

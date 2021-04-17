@@ -11,21 +11,15 @@ namespace SCXC.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Transaccion
     {
         public int transaccion_id { get; set; }
         public string tipoMovimiento { get; set; }
         public Nullable<int> tipoDoc_id { get; set; }
-        [Range(0, int.MaxValue, ErrorMessage = "Solo se aceptan números")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Solo se aceptan números.")]
         public int numDoc { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<int> cliente_id { get; set; }
-        [Required]
-        [Range(0, 9999999999999999.99, ErrorMessage = "Solo se aceptan 2 decimales después del punto.")]
-        [RegularExpression(@"^\d+.?\d{0,2}$", ErrorMessage = "Solo se aceptan números positivos con formato 999.99.")]
         public Nullable<decimal> monto { get; set; }
     
         public virtual Cliente Cliente { get; set; }

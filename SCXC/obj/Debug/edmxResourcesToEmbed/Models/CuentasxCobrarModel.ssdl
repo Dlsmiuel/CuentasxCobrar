@@ -1,5 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CuentasxCobrarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CuentasxCobrar.dbo.AsientoContable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AsientoContable">
+    <Key>
+      <PropertyRef Name="idClient" />
+    </Key>
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="AccountSeat" Type="int" />
+    <Property Name="account" Type="nchar" MaxLength="10" />
+    <Property Name="movementType" Type="varchar" MaxLength="50" />
+    <Property Name="entryDate" Type="varchar" MaxLength="50" />
+    <Property Name="seatAmount" Type="varchar" MaxLength="50" />
+    <Property Name="status" Type="varchar" MaxLength="50" />
+    <Property Name="idClient" Type="int" Nullable="false" />
+    <Property Name="idAuxiliarSystem" Type="int" />
+  </EntityType>
   <EntityType Name="Cliente">
     <Key>
       <PropertyRef Name="cliente_id" />
@@ -41,6 +57,18 @@
     <Property Name="cliente_id" Type="int" />
     <Property Name="monto" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
+  <Association Name="FK_AsientoContable_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="AsientoContable" Type="Self.AsientoContable" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="cliente_id" />
+      </Principal>
+      <Dependent Role="AsientoContable">
+        <PropertyRef Name="idClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Transaccion_Cliente">
     <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
     <End Role="Transaccion" Type="Self.Transaccion" Multiplicity="*" />
@@ -70,6 +98,23 @@
     <EntitySet Name="RegisterUser" EntityType="Self.RegisterUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoDoc" EntityType="Self.TipoDoc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Transaccion" EntityType="Self.Transaccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AsientoContable" EntityType="Self.AsientoContable" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AsientoContable].[description] AS [description], 
+    [AsientoContable].[AccountSeat] AS [AccountSeat], 
+    [AsientoContable].[account] AS [account], 
+    [AsientoContable].[movementType] AS [movementType], 
+    [AsientoContable].[entryDate] AS [entryDate], 
+    [AsientoContable].[seatAmount] AS [seatAmount], 
+    [AsientoContable].[status] AS [status], 
+    [AsientoContable].[idClient] AS [idClient], 
+    [AsientoContable].[idAuxiliarSystem] AS [idAuxiliarSystem]
+    FROM [dbo].[AsientoContable] AS [AsientoContable]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_AsientoContable_Cliente" Association="Self.FK_AsientoContable_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="AsientoContable" EntitySet="AsientoContable" />
+    </AssociationSet>
     <AssociationSet Name="FK_Transaccion_Cliente" Association="Self.FK_Transaccion_Cliente">
       <End Role="Cliente" EntitySet="Cliente" />
       <End Role="Transaccion" EntitySet="Transaccion" />

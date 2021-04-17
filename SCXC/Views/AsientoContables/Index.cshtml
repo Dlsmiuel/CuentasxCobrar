@@ -1,0 +1,83 @@
+﻿@model IEnumerable<SCXC.Models.AsientoContable>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountSeat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movementType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.entryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.seatAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idAuxiliarSystem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountSeat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.movementType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.entryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.seatAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idAuxiliarSystem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idClient }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idClient }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idClient })
+            @Html.ActionLink("Contabilizar", "Contabilizar", new { id=item.idClient })
+        </td>
+    </tr>
+}
+
+</table>

@@ -81,3 +81,9 @@ C:\Users\migue\source\repos\SCXC\SCXC\obj\Debug\SCXC.csproj.CoreCompileInputs.ca
 C:\Users\migue\source\repos\SCXC\SCXC\obj\Debug\SCXC.csproj.CopyComplete
 C:\Users\migue\source\repos\SCXC\SCXC\obj\Debug\SCXC.dll
 C:\Users\migue\source\repos\SCXC\SCXC\obj\Debug\SCXC.pdb
+C:\Users\migue\source\repos\SCXC\SCXC\bin\System.Net.Http.Formatting.dll
+C:\Users\migue\source\repos\SCXC\SCXC\bin\System.Web.Http.dll
+C:\Users\migue\source\repos\SCXC\SCXC\bin\System.Net.Http.Formatting.xml
+C:\Users\migue\source\repos\SCXC\SCXC\bin\System.Web.Http.xml
+C:\Users\migue\source\repos\SCXC\SCXC\bin\RestSharp.dll
+C:\Users\migue\source\repos\SCXC\SCXC\bin\RestSharp.xml

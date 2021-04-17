@@ -11,8 +11,7 @@ namespace SCXC.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class TipoDoc
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,12 +21,7 @@ namespace SCXC.Models
         }
     
         public int tipoDoc_id { get; set; }
-        [Required]
-        [StringLength(50)]
         public string descripcion { get; set; }
-        [Required]
-        [Range(0, int.MaxValue, ErrorMessage = "No se aceptan números negativos.")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Solo se aceptan números.")]
         public Nullable<int> cuentaContable { get; set; }
         public string estado { get; set; }
     
